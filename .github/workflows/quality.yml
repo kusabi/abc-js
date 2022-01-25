@@ -1,0 +1,51 @@
+name: quality
+on: [push]
+jobs:
+  # Run the code quality tests
+  quality:
+    name: Quality checks
+    runs-on: ubuntu-latest
+    steps:
+      # Checkout the code
+      - uses: actions/checkout@v2
+
+      # Install dependencies
+      - uses: borales/actions-yarn@v2.3.0
+        with:
+          cmd: install
+
+      # Validate code lint
+      - uses: borales/actions-yarn@v2.3.0
+        with:
+          cmd: lint
+
+      # Run the unit tests
+      - uses: borales/actions-yarn@v2.3.0
+        with:
+          cmd: test
+
+      # Upload the code coverage artifact
+      - name: Upload code coverage artifact
+        uses: actions/upload-artifact@v1
+        with:
+          name: coverage
+          path: coverage/clover.xml
+
+  # Upload code coverage
+  coverage:
+    name: Publish code coverage
+    runs-on: ubuntu-latest
+    needs: quality
+    steps:
+      # Check out the code
+      - uses: actions/checkout@v2
+
+      # Download the coverage artifact
+      - name: Download code coverage artifact
+        uses: actions/download-artifact@v1
+        with:
+          name: coverage
+
+      # Upload coverage artifact
+      - name: Upload code coverage
+        run: bash <(curl -s https://codecov.io/bash) -Z -t ${{ secrets.CODECOV_TOKEN }} -f coverage/clover.xml

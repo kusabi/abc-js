@@ -1,0 +1,31 @@
+{
+    "root": true,
+    "parser": "@babel/eslint-parser",
+    "overrides": [
+        {
+            "files": "**/*+(js)",
+            "env": {
+                "browser": true,
+                "commonjs": true,
+                "es6": true
+            },
+            "parserOptions": {
+                "ecmaVersion": 2018,
+                "requireConfigFile": false,
+                "sourceType": "module"
+            },
+            "extends": [
+                "eslint:recommended",
+                "plugin:jest/recommended"
+            ],
+            "plugins": [
+                "jest"
+            ]
+        }
+    ],
+    "settings": {
+        "react": {
+            "version": "detect"
+        }
+    }
+}

@@ -1,0 +1,23 @@
+{
+    "name": "@kusabi/native-js",
+    "description": "Extensions to javascript native functionality",
+    "version": "1.0.0",
+    "license": "MIT",
+    "main": "src",
+    "scripts": {
+        "lint": "eslint .",
+        "lint:fix": "yarn lint --fix",
+        "test": "jest --passWithNoTests --collect-coverage",
+        "test:watch": "yarn jest --watch"
+    },
+    "devDependencies": {
+        "@babel/core": "^7.16.5",
+        "@babel/eslint-parser": "^7.16.5",
+        "@babel/preset-env": "^7.16.5",
+        "babel-loader": "^8.2.3",
+        "eslint": "^8.5.0",
+        "eslint-plugin-jest": "^25.3.0",
+        "jest": "^27.4.5",
+        "typescript": "^4.5.4"
+    }
+}
