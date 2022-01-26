@@ -7,7 +7,7 @@
     "scripts": {
         "lint": "eslint .",
         "lint:fix": "yarn lint --fix",
-        "test": "jest --passWithNoTests --collect-coverage",
+        "test": "jest --passWithNoTests --coverage",
         "test:watch": "yarn jest --watch"
     },
     "devDependencies": {
